@@ -1,18 +1,22 @@
-// import styles from './ImageGalleryItem.module.css';
+import styles from './ImageGalleryItem.module.css';
 
-// import React from 'react';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-// const ImageGalleryItem = ({ id, webformatURL }) => {
-//   return (
-//     <li key={id} className="ImageGalleryItem">
-//       <img src={webformatURL} alt="" className="ImageGalleryItem-image" />
-//     </li>
-//   );
-// };
+const ImageGalleryItem = ({ id, webformatURL }) => {
+  return (
+    <li key={id} className={styles.ImageGalleryItem}>
+      <img
+        src={webformatURL}
+        alt=""
+        className={styles.ImageGalleryItem_Image}
+      />
+    </li>
+  );
+};
 
-// ImageGalleryItem.propTypes = {};
+ImageGalleryItem.propTypes = {};
 
-// export default ImageGalleryItem;
+export default ImageGalleryItem;
 
-// // Компонент элемента списка с изображением. Создает DOM-элемент следующей структуры.
+// Компонент элемента списка с изображением. Создает DOM-элемент следующей структуры.

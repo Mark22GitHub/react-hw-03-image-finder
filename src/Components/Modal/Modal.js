@@ -5,8 +5,8 @@ import styles from './Modal.module.css';
 
 // Внешний вид похож на функционал этого VanillaJS-плагина, только вместо белого модального окна рендерится изображение (в примере нажми Run). Анимацию делать не нужно!
 
-<div className="Overlay">
-  <div className="Modal">
+<div className={styles.Overlay}>
+  <div className={styles.Modal}>
     <img src="" alt="" />
   </div>
 </div>;

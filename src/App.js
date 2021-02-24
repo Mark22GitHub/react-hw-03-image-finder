@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Searchbar from './Components/Searchbar/Searchbar';
 // import fetchImgs from './api/pixabay-api';
+import styles from './App.module.css';
+import ImageGallery from './Components/ImageGallery/ImageGallery';
 
 // axios.defaults.headers.common['Authorization'] =
 //   'Bearer 18623551-685e1819373a3e2d77873e072';
@@ -59,21 +61,22 @@ class App extends Component {
   render() {
     const { imgs } = this.state;
     return (
-      <>
+      <div className={styles.App}>
         <Searchbar onSubmit={this.onChangeQuery} />
+        <ImageGallery imgs={imgs} />
 
-        <ul className="ImageGallery">
+        {/* <ul className={styles.ImageGallery}>
           {imgs.map(({ id, webformatURL }) => (
-            <li key={id} className="ImageGalleryItem">
+            <li key={id} className={styles.ImageGalleryItem}>
               <img
                 src={webformatURL}
                 alt=""
-                className="ImageGalleryItem-image"
+                className={styles.ImageGalleryItem_Image}
               />
             </li>
           ))}
-        </ul>
-      </>
+        </ul> */}
+      </div>
     );
   }
 }
