@@ -4,11 +4,11 @@ const key = '18623551-685e1819373a3e2d77873e072';
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 const fetchImgs = (sQuery = '', page = 1) => {
-  axios
+  return axios
     .get(
       `?q=${sQuery}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`,
     )
-    .then(({ data }) => data.hits);
+    .then(({ data }) => console.log(data.hits));
   //   const url = `https://pixabay.com/api/?q=${query}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`;
   //   return axios.get(url).then(({ data }) => console.log(data.hits));
 };

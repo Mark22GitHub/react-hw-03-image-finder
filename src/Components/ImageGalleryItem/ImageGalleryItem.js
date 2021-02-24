@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const ImageGalleryItem = ({ id, webformatURL }) => {
   return (
-    <li key={id} className={styles.ImageGalleryItem}>
+    <li className={styles.ImageGalleryItem}>
       <img
         src={webformatURL}
         alt=""
@@ -20,3 +20,8 @@ ImageGalleryItem.propTypes = {};
 export default ImageGalleryItem;
 
 // Компонент элемента списка с изображением. Создает DOM-элемент следующей структуры.
+{
+  /* <li key={id} className={styles.ImageGalleryItem}>
+  <img src={webformatURL} alt="" className={styles.ImageGalleryItem_Image} />
+</li>; */
+}

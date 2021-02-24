@@ -5,14 +5,13 @@ import PropTypes from 'prop-types';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
 const ImageGallery = ({ imgs }) => {
+  console.log(imgs);
   return (
-    <div>
-      <ul className={styles.ImageGallery}>
-        {imgs.map(({ id, webformatURL }) => (
-          <ImageGalleryItem key={id} webformatURL={webformatURL} />
-        ))}
-      </ul>
-    </div>
+    <ul className={styles.ImageGallery}>
+      {imgs.map(({ id, webformatURL }) => (
+        <ImageGalleryItem key={id} {...imgs} />
+      ))}
+    </ul>
   );
 };
 

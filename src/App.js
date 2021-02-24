@@ -15,6 +15,8 @@ class App extends Component {
     imgs: [],
     sQuery: '',
     page: 1,
+    isLoading: false,
+    error: null,
   };
 
   // ==========================
@@ -26,24 +28,33 @@ class App extends Component {
   }
 
   onChangeQuery = query => {
-    this.setState({ sQuery: query, page: 1, imgs: [] });
+    this.setState({ sQuery: query, page: 1, imgs: [], error: null });
   };
 
   fetchImgs = () => {
     const { sQuery, page } = this.state;
     const options = { sQuery, page };
+    console.log(this.state.imgs);
 
-    fetchImgs(options)
-      .then(({ data }) => {
-        this.setState(prevState => ({
-          imgs: [...prevState.imgs, ...data.hits],
-          page: prevState.page + 1,
-        }));
-        console.log(this.state.imgs);
-      })
-      .catch(error => console.log(error));
+    this.setState({ isLoading: true });
+
+    fetchImgs(options).then(imgs => {
+      this.setState(prevState => ({
+        imgs: [...prevState.imgs, ...imgs],
+        page: prevState.page + 1,
+      }));
+      console.log(this.state.imgs);
+    });
+    // .catch(error => this.setState({ error }))
+    // .finnaly(() => this.setState({ isLoading: false }));
   };
-
+  // fetchImgs(options).then(imgs => {
+  //       this.setState(({ imgs, page }) => ({
+  //         imgs: [...imgs, ...imgs],
+  //         page: page + 1,
+  //       }));
+  //       console.log(this.state.imgs);
+  //     });
   // =========================
   // componentDidMount() {
   //   fetchImgs()
@@ -68,12 +79,18 @@ class App extends Component {
   // }
 
   render() {
-    const { imgs } = this.state;
+    const { imgs, isLoading, error } = this.state;
+    const ifRenderLoadMore = imgs.length > 0 && !isLoading;
+
     return (
       <div className={styles.App}>
+        {error && <h1>Something went wrong...</h1>}
         <Searchbar onSubmit={this.onChangeQuery} />
         <ImageGallery imgs={imgs} />
-        <Button fetchImgs={this.fetchImgs} />
+
+        {isLoading && <h1>Loading...</h1>}
+
+        {ifRenderLoadMore && <Button fetchImgs={this.fetchImgs} />}
 
         {/* <ul className={styles.ImageGallery}>
           {imgs.map(({ id, webformatURL }) => (
