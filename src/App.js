@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-// import axios from 'axios';
-import fetchImgs from './api/pixabay-api';
+import axios from 'axios';
+import Searchbar from './Components/Searchbar/Searchbar';
+// import fetchImgs from './api/pixabay-api';
+
+// axios.defaults.headers.common['Authorization'] =
+//   'Bearer 18623551-685e1819373a3e2d77873e072';
+
+const key = '18623551-685e1819373a3e2d77873e072';
+axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 class App extends Component {
   state = {
@@ -9,15 +16,29 @@ class App extends Component {
     query: '',
     page: 1,
   };
-  // =========================
-  componentDidMount() {
-    fetchImgs()
-      .then(data => {
+
+  // ==========================
+  onChangeQuery = (query, page) => {
+    // const key = '18623551-685e1819373a3e2d77873e072';
+    axios
+      .get(
+        `?q=${query}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`,
+      )
+      .then(({ data }) => {
         this.setState({ imgs: data.hits });
         console.log(this.state.imgs);
       })
       .catch(error => console.log(error));
-  }
+  };
+
+  // =========================
+  // componentDidMount() {
+  //   fetchImgs()
+  //     .then(data => {
+  //       this.setState({ imgs: data.hits });
+  //       console.log(this.state.imgs);
+  //     })
+  //     .catch(error => console.log(error));
   // =============================
   // componentDidMount() {
   //   const key = '18623551-685e1819373a3e2d77873e072';
@@ -36,7 +57,24 @@ class App extends Component {
   componentDidUpdate() {}
 
   render() {
-    return <div></div>;
+    const { imgs } = this.state;
+    return (
+      <>
+        <Searchbar onSubmit={this.onChangeQuery} />
+
+        <ul className="ImageGallery">
+          {imgs.map(({ id, webformatURL }) => (
+            <li key={id} className="ImageGalleryItem">
+              <img
+                src={webformatURL}
+                alt=""
+                className="ImageGalleryItem-image"
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    );
   }
 }
 
