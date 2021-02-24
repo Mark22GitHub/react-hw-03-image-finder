@@ -6,21 +6,21 @@ import styles from './Searchbar.module.css';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// const { query } = this.state;
-// const { onSubmit } = this.props;
-
 class Searchbar extends Component {
   state = {
     query: '',
   };
 
-  handleChange = e => {
-    this.setState({ query: e.currentTarget.value });
+  handleChange = ({ currentTarget }) => {
+    const { value } = currentTarget;
+    this.setState({ query: value });
   };
 
   handleSubmit = e => {
+    const { onSubmit } = this.props;
+    const { query } = this.state;
     e.preventDefault();
-    this.props.onSubmit(this.state.query);
+    onSubmit(query);
     this.setState({ query: '' });
   };
 
