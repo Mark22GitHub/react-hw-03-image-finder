@@ -3,17 +3,18 @@ import axios from 'axios';
 const key = '18623551-685e1819373a3e2d77873e072';
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 
-const fetchImgs = (sQuery = '', page = 1) => {
+const fetchPictures = ({ sQuery = '', page = 1 }) => {
+  //   console.log(sQuery);
   return axios
     .get(
       `?q=${sQuery}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`,
     )
-    .then(({ data }) => console.log(data.hits));
+    .then(response => response.data.hits);
   //   const url = `https://pixabay.com/api/?q=${query}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`;
   //   return axios.get(url).then(({ data }) => console.log(data.hits));
 };
 
-export default fetchImgs;
+export default fetchPictures;
 
 // ====================================================
 // import axios from 'axios';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 
 import Searchbar from './Components/Searchbar/Searchbar';
-import fetchImgs from './api/pixabay-api';
+import fetchPictures from './api/pixabay-api';
 import styles from './App.module.css';
 import ImageGallery from './Components/ImageGallery/ImageGallery';
 import Button from './Components/Button/Button';
@@ -34,19 +34,24 @@ class App extends Component {
   fetchImgs = () => {
     const { sQuery, page } = this.state;
     const options = { sQuery, page };
-    console.log(this.state.imgs);
 
     this.setState({ isLoading: true });
 
-    fetchImgs(options).then(imgs => {
-      this.setState(prevState => ({
-        imgs: [...prevState.imgs, ...imgs],
-        page: prevState.page + 1,
-      }));
-      console.log(this.state.imgs);
-    });
-    // .catch(error => this.setState({ error }))
-    // .finnaly(() => this.setState({ isLoading: false }));
+    fetchPictures(options)
+      .then(imgs => {
+        console.log(imgs);
+        this.setState(prevState => ({
+          imgs: [...prevState.imgs, ...imgs],
+          page: prevState.page + 1,
+        }));
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth',
+        });
+      })
+
+      .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoading: false }));
   };
   // fetchImgs(options).then(imgs => {
   //       this.setState(({ imgs, page }) => ({

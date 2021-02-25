@@ -1,15 +1,13 @@
 import styles from './Button.module.css';
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const Button = ({ fetchImgs }) => {
   return (
-    <div>
-      <button className={styles.Button} type="button" onClick={fetchImgs}>
-        Load more
-      </button>
-    </div>
+    <button className={styles.Button} type="button" onClick={fetchImgs}>
+      Load more
+    </button>
   );
 };
 

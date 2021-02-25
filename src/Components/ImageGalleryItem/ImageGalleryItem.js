@@ -1,9 +1,9 @@
 import styles from './ImageGalleryItem.module.css';
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-const ImageGalleryItem = ({ id, webformatURL }) => {
+const ImageGalleryItem = ({ webformatURL }) => {
   return (
     <li className={styles.ImageGalleryItem}>
       <img
@@ -18,10 +18,3 @@ const ImageGalleryItem = ({ id, webformatURL }) => {
 ImageGalleryItem.propTypes = {};
 
 export default ImageGalleryItem;
-
-// Компонент элемента списка с изображением. Создает DOM-элемент следующей структуры.
-{
-  /* <li key={id} className={styles.ImageGalleryItem}>
-  <img src={webformatURL} alt="" className={styles.ImageGalleryItem_Image} />
-</li>; */
-}

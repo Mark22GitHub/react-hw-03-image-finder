@@ -1,15 +1,15 @@
 import styles from './ImageGallery.module.css';
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
 const ImageGallery = ({ imgs }) => {
-  console.log(imgs);
+  //   console.log(1111, imgs);
   return (
     <ul className={styles.ImageGallery}>
       {imgs.map(({ id, webformatURL }) => (
-        <ImageGalleryItem key={id} {...imgs} />
+        <ImageGalleryItem key={id} webformatURL={webformatURL} />
       ))}
     </ul>
   );
