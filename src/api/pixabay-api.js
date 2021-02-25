@@ -9,7 +9,7 @@ const fetchPictures = ({ sQuery = '', page = 1 }) => {
     .get(
       `?q=${sQuery}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`,
     )
-    .then(response => response.data.hits);
+    .then(({ data }) => data.hits);
   //   const url = `https://pixabay.com/api/?q=${query}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`;
   //   return axios.get(url).then(({ data }) => console.log(data.hits));
 };

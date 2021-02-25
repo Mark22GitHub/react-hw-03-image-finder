@@ -6,6 +6,7 @@ import fetchPictures from './api/pixabay-api';
 import styles from './App.module.css';
 import ImageGallery from './Components/ImageGallery/ImageGallery';
 import Button from './Components/Button/Button';
+import Loader from './Components/Loader/Loader';
 
 // axios.defaults.headers.common['Authorization'] =
 //   'Bearer 18623551-685e1819373a3e2d77873e072';
@@ -39,7 +40,7 @@ class App extends Component {
 
     fetchPictures(options)
       .then(imgs => {
-        console.log(imgs);
+        // console.log(imgs);
         this.setState(prevState => ({
           imgs: [...prevState.imgs, ...imgs],
           page: prevState.page + 1,
@@ -93,7 +94,7 @@ class App extends Component {
         <Searchbar onSubmit={this.onChangeQuery} />
         <ImageGallery imgs={imgs} />
 
-        {isLoading && <h1>Loading...</h1>}
+        {isLoading && <Loader />}
 
         {ifRenderLoadMore && <Button fetchImgs={this.fetchImgs} />}
 
