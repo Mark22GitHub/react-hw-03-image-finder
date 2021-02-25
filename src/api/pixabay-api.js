@@ -3,11 +3,10 @@ import axios from 'axios';
 const key = '18623551-685e1819373a3e2d77873e072';
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 
-const fetchPictures = ({ sQuery = '', page = 1 }) => {
-  //   console.log(sQuery);
+const fetchPictures = ({ query = '', page = 1 }) => {
   return axios
     .get(
-      `?q=${sQuery}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`,
+      `?q=${query}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`,
     )
     .then(({ data }) => data.hits);
   //   const url = `https://pixabay.com/api/?q=${query}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`;

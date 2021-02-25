@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 
-import Searchbar from './Components/Searchbar/Searchbar';
+import Searchbar from './Components/Searchbar';
 import fetchPictures from './api/pixabay-api';
 import styles from './App.module.css';
-import ImageGallery from './Components/ImageGallery/ImageGallery';
-import Button from './Components/Button/Button';
-import Loader from './Components/Loader/Loader';
-
-// axios.defaults.headers.common['Authorization'] =
-//   'Bearer 18623551-685e1819373a3e2d77873e072';
+import ImageGallery from './Components/ImageGallery';
+import Button from './Components/Button';
+import Loader from './Components/Loader';
 
 class App extends Component {
   state = {
     imgs: [],
-    sQuery: '',
+    query: '',
     page: 1,
     isLoading: false,
     error: null,
@@ -23,18 +20,18 @@ class App extends Component {
   // ==========================
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.sQuery !== this.state.sQuery) {
+    if (prevState.query !== this.state.query) {
       this.fetchImgs();
     }
   }
 
-  onChangeQuery = query => {
-    this.setState({ sQuery: query, page: 1, imgs: [], error: null });
+  onChangeQuery = request => {
+    this.setState({ query: request, page: 1, imgs: [], error: null });
   };
 
   fetchImgs = () => {
-    const { sQuery, page } = this.state;
-    const options = { sQuery, page };
+    const { query, page } = this.state;
+    const options = { query, page };
 
     this.setState({ isLoading: true });
 
@@ -95,7 +92,6 @@ class App extends Component {
         <ImageGallery imgs={imgs} />
 
         {isLoading && <Loader />}
-
         {ifRenderLoadMore && <Button fetchImgs={this.fetchImgs} />}
 
         {/* <ul className={styles.ImageGallery}>
