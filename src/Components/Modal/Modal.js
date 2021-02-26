@@ -1,12 +1,44 @@
 import styles from './Modal.module.css';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
 
-// Описание компонента Modal
-// При клике по элементу галереи должно открываться модальное окно с темным оверлеем и отображаться большая версия изображения. Модальное окно должно закрываться по нажатию клавиши ESC или по клику на оверлее.
+const modalRoot = document.querySelector('#modal-root');
 
-// Внешний вид похож на функционал этого VanillaJS-плагина, только вместо белого модального окна рендерится изображение (в примере нажми Run). Анимацию делать не нужно!
+class Modal extends Component {
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
 
-<div className={styles.Overlay}>
-  <div className={styles.Modal}>
-    <img src="" alt="" />
-  </div>
-</div>;
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      this.props.onClose();
+    }
+  };
+
+  handleOverlayClose = e => {
+    if (e.currentTarget === e.target) {
+      this.props.onClose();
+    }
+  };
+
+  render() {
+    const { largeImg } = this.props;
+    return createPortal(
+      <div onClick={this.handleOverlayClose} className={styles.Overlay}>
+        <div className={styles.Modal}>
+          <img src={largeImg} alt="" />
+        </div>
+      </div>,
+      modalRoot,
+    );
+  }
+}
+
+Modal.propTypes = {};
+
+export default Modal;

@@ -1,10 +1,6 @@
 import styles from './Searchbar.module.css';
-
-// Описание компонента Searchbar
-// Компонент принимает один проп onSubmit - функцию для передачи значения инпута при сабмите формы. Создает DOM-элемент следующей структуры.
-
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class Searchbar extends Component {
   state = {

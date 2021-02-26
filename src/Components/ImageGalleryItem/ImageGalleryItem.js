@@ -1,11 +1,14 @@
 import styles from './ImageGalleryItem.module.css';
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-const ImageGalleryItem = ({ webformatURL }) => {
+const ImageGalleryItem = ({ webformatURL, toggleModal, largeImageURL }) => {
   return (
-    <li className={styles.ImageGalleryItem}>
+    <li
+      onClick={() => toggleModal(largeImageURL)}
+      className={styles.ImageGalleryItem}
+    >
       <img
         src={webformatURL}
         alt=""
