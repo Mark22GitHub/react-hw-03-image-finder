@@ -19,6 +19,12 @@ const ImageGallery = ({ imgs, toggleModal }) => {
   );
 };
 
-ImageGallery.propTypes = {};
+ImageGallery.propTypes = {
+  imgs: PropTypes.array.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  id: PropTypes.number,
+  webformatURL: PropTypes.string,
+  largeImageURL: PropTypes.string,
+};
 
 export default ImageGallery;

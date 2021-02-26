@@ -11,6 +11,8 @@ const Button = ({ fetchImgs }) => {
   );
 };
 
-Button.propTypes = {};
+Button.propTypes = {
+  fetchImgs: PropTypes.func,
+};
 
 export default Button;
